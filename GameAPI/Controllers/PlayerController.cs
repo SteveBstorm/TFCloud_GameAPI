@@ -26,6 +26,12 @@ namespace GameAPI.Controllers
             //});
         }
 
+
+        /// <summary>
+        /// Permet de récupérer la liste des joueurs
+        /// </summary>
+        /// <returns>IEnumerable</returns>
+        /// <params></params>
         [HttpGet]
         public IActionResult Get()
         {

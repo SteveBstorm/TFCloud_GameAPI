@@ -28,7 +28,10 @@ namespace GameAPI_BLL.Services
         {
             _playerRepository.Delete(id);
         }
-
+        /// <summary>
+        /// Retourne la liste des joueurs
+        /// </summary>
+        /// <returns></returns>
         public List<Player> GetAll()
         {
             return _playerRepository.GetAll().Select(p => p.ToBLL()).ToList();
