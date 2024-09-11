@@ -37,9 +37,19 @@ namespace GameAPI_BLL.Services
             return _playerRepository.GetAll().Select(p => p.ToBLL()).ToList();
         }
 
+        public List<Player> GetByGameId(int gameid)
+        {
+            return _playerRepository.GetByGameId(gameid).Select(x => x.ToBLL()).ToList();
+        }
+
         public Player? GetById(int id)
         {
             return _playerRepository.GetById(id)?.ToBLL();
+        }
+
+        public void SetNewGame(int gameid, int playerid)
+        {
+            _playerRepository.SetNewGame(gameid, playerid);
         }
 
         public void Update(Player player)

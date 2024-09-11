@@ -29,5 +29,29 @@ namespace GameAPI_BLL.Mappers
                 Nickname = player.Nickname
             };
         }
+
+        public static DAL.Game ToDAL(this BLL.Game game)
+        {
+            return new DAL.Game
+            {
+                Id = game.Id,
+                Title = game.Title,
+                Editor = game.Editor,
+                ReleaseYear = game.ReleaseYear,
+                Genre = game.Genre
+            };
+        }
+
+        public static BLL.Game ToBLL(this DAL.Game game)
+        {
+            return new BLL.Game
+            {
+                Id = game.Id,
+                Title = game.Title,
+                Editor = game.Editor,
+                ReleaseYear = game.ReleaseYear,
+                Genre = game.Genre
+            };
+        }
     }
 }

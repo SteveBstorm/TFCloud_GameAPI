@@ -13,5 +13,16 @@ namespace GameAPI.Tools
                 Nickname = form.Nickname
             };
         }
+
+        public static Game Mapper(this GameFormDTO form)
+        {
+            return new Game
+            {
+                Editor = form.Editor,
+                Title = form.Title,
+                ReleaseYear = form.ReleaseYear,
+                Genre = form.Genre
+            };
+        }
     }
 }

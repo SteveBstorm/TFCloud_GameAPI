@@ -114,5 +114,18 @@ namespace GameAPI.Controllers
             //    return BadRequest("Joueur inéxistant");
             //}
         }
+
+        [HttpGet("byGame/{id}")]
+        public IActionResult GetByGame(int id)
+        {
+            return Ok(_playerService.GetByGameId(id));
+        }
+
+        [HttpPost("setgameproperty")]
+        public IActionResult SetGame(SetGameDTO setGame)
+        {
+            _playerService.SetNewGame(setGame.GameId, setGame.PlayerId);
+            return Ok();
+        }
     }
 }

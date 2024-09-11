@@ -9,5 +9,7 @@ namespace GameAPI_DAL.Interface
         List<Player> GetAll();
         Player? GetById(int id);
         void Update(Player player);
+        List<Player> GetByGameId(int gameid);
+        void SetNewGame(int gameid, int playerid);
     }
 }

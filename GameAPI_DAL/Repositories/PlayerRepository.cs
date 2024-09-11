@@ -145,5 +145,48 @@ namespace GameAPI_DAL.Repositories
                 }
             }
         }
+
+        public List<Player> GetByGameId(int gameid)
+        {
+            List<Player> toReturn = new List<Player>();
+            using (SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = cnx.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM player p JOIN PlayerGame pg " +
+                        "ON p.Id = pg.PlayerId " +
+                        "WHERE pg.GameId = @gameid";
+
+                    cmd.Parameters.AddWithValue("gameid", gameid);
+                    cnx.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            toReturn.Add(Mapper(reader));
+                        }
+                    }
+                    cnx.Close();
+                }
+            }
+            return toReturn;
+        }
+
+        public void SetNewGame(int gameid, int playerid)
+        {
+            using(SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = cnx.CreateCommand())
+                {
+                    cmd.CommandText = "INSERT INTO PlayerGame VALUES (@pid, @gid)";
+                    cmd.Parameters.AddWithValue("pid", playerid);
+                    cmd.Parameters.AddWithValue("gid", gameid);
+
+                    cnx.Open();
+                    cmd.ExecuteNonQuery();
+                    cnx.Close();
+                }
+            }
+        }
     }
 }
